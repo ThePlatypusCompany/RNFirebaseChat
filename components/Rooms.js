@@ -18,6 +18,16 @@ class Rooms extends Component {
     header: null
   };
 
+  constructor(props) {
+    super(props);
+    var firebaseDB = firebaseApp.database();
+    this.roomsRef = firebaseDB.ref('rooms');
+    this.state = {
+      rooms: [],
+      newRoom: ''
+    }
+  }
+
   renderRow(item) {
     return (
       <TouchableHighlight style={styles.roomLi}
