@@ -47,6 +47,10 @@ class SignUp extends Component {
     }
   }
 
+  goToSignIn() {
+   this.props.navigation.goBack();
+  }
+
   render() {
     return (
       <KeyboardAvoidingView
@@ -81,6 +85,7 @@ class SignUp extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           underlayColor={'#1E90FF'}
+          onPress={() => this.goToSignIn()}
         >
           <Text style={styles.authLowerText}>Go to Sign In</Text>
         </TouchableHighlight>
