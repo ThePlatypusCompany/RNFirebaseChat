@@ -10,11 +10,22 @@ import styles from './styles.js';
 
 class Messages extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Messages',
+    title: navigation.state.params.roomName,
     headerStyle: styles.messagesHeader,
     headerTitleStyle: styles.messagesTitle,
     headerBackTitleStyle: styles.messagesBackTitle
   });
+
+  constructor(props) {
+    super(props);
+    var FirebaseDB = firebaseApp.database();
+    var roomKey = this.props.navigation.state.params.roomKey;
+    this.messagesRef = FirebaseDB.ref(`messages/${roomKey}`);
+    this.state = {
+      user: '',
+      messages: []
+    }
+  }
 
   render() {
     return (
