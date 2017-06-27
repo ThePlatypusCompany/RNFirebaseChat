@@ -73,6 +73,7 @@ class SignUp extends Component {
         />
         <TouchableHighlight style={styles.authButton}
           underlayColor={'#1E90FF'}
+          onPress={this.signUp.bind(this)}
         >
           <Text style={styles.authButtonText}>Sign Up</Text>
         </TouchableHighlight>
