@@ -17,6 +17,14 @@ class SignUp extends Component {
     header: null
   };
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      userEmail: '',
+      userPassword: ''
+    }
+  }
+
   render() {
     return (
       <KeyboardAvoidingView
