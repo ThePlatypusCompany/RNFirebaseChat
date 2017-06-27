@@ -63,6 +63,7 @@ class SignUp extends Component {
           keyboardType={'email-address'}
           placeholder={'example@email.com'}
           placeholderTextColor={'#fff'}
+          onChangeText={(text) => this.setState({ userEmail: text })}
         />
         <Text style={styles.authInputLabel}>Password</Text>
         <TextInput
@@ -70,6 +71,7 @@ class SignUp extends Component {
           style={styles.authTextInput}
           placeholder={'password'}
           placeholderTextColor={'#fff'}
+          onChangeText={(text) => this.setState({ userPassword: text })}
         />
         <TouchableHighlight style={styles.authButton}
           underlayColor={'#1E90FF'}
