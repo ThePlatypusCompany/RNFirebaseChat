@@ -25,6 +25,28 @@ class SignUp extends Component {
     }
   }
 
+  async signUp() {
+    if (this.state.userEmail != '' && this.state.userPassword != '') {
+      try {
+        await firebaseApp.auth().createUserWithEmailAndPassword(this.state.userEmail, this.state.userPassword);
+        console.log(this.state.userEmail + ' signed up');
+      } catch(error) {
+        console.log(error.toString());
+        Alert.alert(error.toString());
+      }
+    }
+    else {
+      Alert.alert(
+        'Invalid Sign Up',
+        'The Email and Password fields cannot be blank.',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      )
+    }
+  }
+
   render() {
     return (
       <KeyboardAvoidingView
