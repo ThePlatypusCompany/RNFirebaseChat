@@ -30,6 +30,7 @@ class SignIn extends Component {
       try {
         await firebaseApp.auth().signInWithEmailAndPassword(this.state.userEmail, this.state.userPassword);
         console.log(this.state.userEmail + ' signed in');
+        this.props.navigation.navigate('Rooms');
       } catch(error) {
         console.log(error.toString());
         Alert.alert(error.toString());
