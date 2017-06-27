@@ -28,6 +28,23 @@ class Rooms extends Component {
     }
   }
 
+  componentDidMount() {
+    this.listenForRooms(this.roomsRef);
+  }
+
+  listenForRooms(roomsRef) {
+    roomsRef.on('value', (dataSnapshot) => {
+      var roomsFB = [];
+      dataSnapshot.forEach((child) => {
+        roomsFB.push({
+          name: child.val().name,
+          key: child.key
+        });
+      });
+      this.setState({ rooms: roomsFB });
+    });
+  }
+
   renderRow(item) {
     return (
       <TouchableHighlight style={styles.roomLi}
