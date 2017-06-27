@@ -53,10 +53,15 @@ class Rooms extends Component {
     this.setState({ newRoom: '' });
   }
 
+  openMessages(room) {
+    this.props.navigation.navigate('Messages', {roomKey: room.key, roomName: room.name});
+  }
+
   renderRow(item) {
     return (
       <TouchableHighlight style={styles.roomLi}
       underlayColor="#fff"
+      onPress={() => this.openMessages(item)}
       >
         <Text style={styles.roomLiText}>{item.name}</Text>
       </TouchableHighlight>
