@@ -45,6 +45,14 @@ class Rooms extends Component {
     });
   }
 
+  addRoom() {
+    if (this.state.newRoom === '') {
+      return;
+    }
+    this.roomsRef.push({ name: this.state.newRoom });
+    this.setState({ newRoom: '' });
+  }
+
   renderRow(item) {
     return (
       <TouchableHighlight style={styles.roomLi}
