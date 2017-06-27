@@ -27,6 +27,34 @@ class Messages extends Component {
     }
   }
 
+  componentDidMount(){
+    this.setState({
+      user: firebaseApp.auth().currentUser
+    })
+    this.listenForMessages(this.messagesRef);
+  }
+
+  listenForMessages(messagesRef){
+    messagesRef.on('value', (dataSnapshot) => {
+      var messagesFB = [];
+      dataSnapshot.forEach((child) => {
+        messagesFB = [({
+          _id: child.key,
+          text: child.val().text,
+          createdAt: child.val().createdAt,
+          user: {
+            _id: child.val().user._id,
+            name: child.val().user.name
+          }
+        }), ...messagesFB];
+      });
+
+      this.setState({
+        messages: messagesFB
+      });
+    });
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
