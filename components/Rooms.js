@@ -72,16 +72,19 @@ class Rooms extends Component {
           <TextInput
             style={styles.roomsInput}
             placeholder={"New Room Name"}
+            onChangeText={(text) => this.setState({newRoom: text})}
+            value={this.state.newRoom}
           />
           <TouchableHighlight style={styles.roomsNewButton}
             underlayColor="#fff"
+            onPress={() => this.addRoom()}
           >
             <Text style={styles.roomsNewButtonText}>Create</Text>
           </TouchableHighlight>
         </View>
         <View style={styles.roomsListContainer}>
           <FlatList
-            data={{}}
+            data={this.state.rooms}
             renderItem={({item}) => (this.renderRow(item)
             )}
           />
