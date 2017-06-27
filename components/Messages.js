@@ -27,14 +27,12 @@ class Messages extends Component {
     }
   }
 
-  componentDidMount(){
-    this.setState({
-      user: firebaseApp.auth().currentUser
-    })
+  componentDidMount() {
+    this.setState({ user: firebaseApp.auth().currentUser });
     this.listenForMessages(this.messagesRef);
   }
 
-  listenForMessages(messagesRef){
+  listenForMessages(messagesRef) {
     messagesRef.on('value', (dataSnapshot) => {
       var messagesFB = [];
       dataSnapshot.forEach((child) => {
@@ -48,11 +46,20 @@ class Messages extends Component {
           }
         }), ...messagesFB];
       });
-
-      this.setState({
-        messages: messagesFB
-      });
+      this.setState({ messages: messagesFB });
     });
+  }
+
+  addMessage(message = {}) {
+    var message = message[0]
+    this.messagesRef.push({
+      text: message.text,
+      createdAt: Date.now(),
+      user: {
+        _id: message.user._id,
+        name: message.user.name
+      }
+    })
   }
 
   render() {
